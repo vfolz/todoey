@@ -50,12 +50,16 @@ class TaskScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40))),
-            ),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40))),
+                child: ListView(
+                  padding: const EdgeInsets.all(20),
+                  children: <Widget>[Text('Transcend human nature'),
+                  Text('Ascend to heaven')],
+                )),
           )
         ],
       ),
