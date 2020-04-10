@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool checkstate = false;
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
@@ -56,9 +57,22 @@ class TaskScreen extends StatelessWidget {
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
                 child: ListView(
-                  padding: const EdgeInsets.all(20),
-                  children: <Widget>[Text('Transcend human nature'),
-                  Text('Ascend to heaven')],
+                  padding: const EdgeInsets.only(top: 30, left: 40, right:30),
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text('Buy milk', style: TextStyle(fontSize: 18.0)),
+                        Checkbox(
+                          value: checkstate, 
+                          onChanged: (bool newValue){
+                            checkstate = newValue;
+                          },
+                          
+                        )
+                      ],
+                    ),
+                  ],
                 )),
           )
         ],
