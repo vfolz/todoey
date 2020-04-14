@@ -9,10 +9,33 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         leading: Text(text, style: TextStyle(fontSize: 18.0)),
-        trailing: Checkbox(
-          value: false, 
-          onChanged: null,
-        )
+        trailing: TextCheckBox()
+    );
+  }
+}
+
+class TextCheckBox extends StatefulWidget {
+  const TextCheckBox({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _TextCheckBoxState createState() => _TextCheckBoxState();
+}
+
+class _TextCheckBoxState extends State<TextCheckBox> {
+ bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      value: isChecked, 
+      onChanged: (newValue){
+        setState(() {
+          isChecked = newValue;
+        });
+      }  
+ 
     );
   }
 }

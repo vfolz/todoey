@@ -22,6 +22,7 @@ class AddTaskScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom:5.0),
               child: TextField(
+                autofocus: true,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(bottom:-20.0, ),                
                 ) ,
