@@ -1,41 +1,46 @@
 import 'package:flutter/material.dart';
 
-class TaskTile extends StatelessWidget {
-  
+class TaskTile extends StatefulWidget {
   TaskTile({this.text});
 
-  final String text;
+  final text;
+
+  @override
+  _TaskTileState createState() => _TaskTileState();
+}
+
+class _TaskTileState extends State<TaskTile> {
+  void checkBoxState(bool newValue) {
+    setState(() {
+      isChecked = newValue;
+    });
+  }
+  //Variable to be passed to stateless widget
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Text(text, style: TextStyle(fontSize: 18.0)),
-        trailing: TextCheckBox()
-    );
+        leading: Text(widget.text, style: TextStyle(fontSize: 18.0, decoration: isChecked ? TextDecoration.lineThrough: null)),
+        trailing: TextCheckBox(
+            isChecked: isChecked,
+            //Anonymous funciton call back
+            checkBoxState: (bool newValue) {
+              setState(() {
+                isChecked = newValue;
+              });
+            }));
   }
 }
 
-class TextCheckBox extends StatefulWidget {
-  const TextCheckBox({
-    Key key,
-  }) : super(key: key);
+class TextCheckBox extends StatelessWidget {
+  TextCheckBox({this.isChecked, this.checkBoxState});
 
-  @override
-  _TextCheckBoxState createState() => _TextCheckBoxState();
-}
-
-class _TextCheckBoxState extends State<TextCheckBox> {
- bool isChecked = false;
+  final isChecked;
+  final Function checkBoxState;
 
   @override
   Widget build(BuildContext context) {
-    return Checkbox(
-      value: isChecked, 
-      onChanged: (newValue){
-        setState(() {
-          isChecked = newValue;
-        });
-      }  
- 
-    );
+    return Checkbox(value: isChecked, onChanged: this.checkBoxState);
   }
 }
