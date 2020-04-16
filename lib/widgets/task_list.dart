@@ -8,25 +8,21 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-
-  // checkBoxState: (bool newValue) {
-//   setState(() {
-//     isChecked = newValue;
-//   });
-// }
-
-  List<Task> task = [
-    Task(name: 'Get toilet paper')
-  ];
+  List<Task> task = [Task(name: 'Get toilet paper')];
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      children: <Widget>[
-        
-    
-      ],
-    );
+    return ListView.builder(itemBuilder: (context, index) {
+      return TaskTile(
+        text: task[index].name,
+        isChecked: task[index].isDone,
+        onChanged: (bool newValue) {
+          setState(() {
+            task[index].toggleDone();
+          });
+        },
+      
+      );
+    }, itemCount: task.length,);
   }
 }
