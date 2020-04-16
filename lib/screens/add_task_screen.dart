@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/models/task.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  @override
-  _AddTaskScreenState createState() => _AddTaskScreenState();
-}
-
-class _AddTaskScreenState extends State<AddTaskScreen> {
-  final myController = TextEditingController();
-
-  @override
-  void dispose() {
-    myController.dispose();
-    super.dispose();
-  }
+class AddTaskScreen extends StatelessWidget {
+  final Function onPressedCallBack;
+  AddTaskScreen(this.onPressedCallBack);
 
   @override
   Widget build(BuildContext context) {
+    String addedText;
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -36,7 +27,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             Padding(
               padding: const EdgeInsets.only(bottom: 5.0),
               child: TextField(
-                controller: myController,
+                onChanged: (String newValue) {
+                  addedText = newValue;
+                },
                 autofocus: true,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
@@ -50,9 +43,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               child: FlatButton(
                 color: Colors.lightBlueAccent,
                 disabledColor: Colors.lightBlueAccent,
-                onPressed: () {
-                  Task addedTask = Task(name: myController.text);
-                  Navigator.pop(context, addedTask);
+                onPressed: (){
+                  onPressedCallBack(addedText);
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Add',
