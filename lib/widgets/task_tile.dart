@@ -19,14 +19,3 @@ class TaskTile extends StatelessWidget {
         ));
   }
 }
-// checkBoxState: (bool newValue) {
-//   setState(() {
-//     isChecked = newValue;
-//   });
-// }
-
-// void checkBoxState(bool newValue) {
-//   setState(() {
-//     isChecked = newValue;
-//   });
-// }

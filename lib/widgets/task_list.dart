@@ -3,6 +3,8 @@ import 'package:todoey/models/task.dart';
 import 'package:todoey/widgets/task_tile.dart';
 
 class TaskList extends StatefulWidget {
+  TaskList(this.tasks);
+  final List<Task> tasks;
   @override
   _TaskListState createState() => _TaskListState();
 }
@@ -12,17 +14,19 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context, index) {
-      return TaskTile(
-        text: task[index].name,
-        isChecked: task[index].isDone,
-        onChanged: (bool newValue) {
-          setState(() {
-            task[index].toggleDone();
-          });
-        },
-      
-      );
-    }, itemCount: task.length,);
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return TaskTile(
+          text: widget.tasks[index].name,
+          isChecked: widget.tasks[index].isDone,
+          onChanged: (bool newValue) {
+            setState(() {
+              widget.tasks[index].toggleDone();
+            });
+          },
+        );
+      },
+      itemCount: widget.tasks.length,
+    );
   }
 }
