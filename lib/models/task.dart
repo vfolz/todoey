@@ -1,4 +1,6 @@
-class Task {
+import 'package:flutter/cupertino.dart';
+
+class Task with ChangeNotifier {
   final String name;
   bool isDone;
 
@@ -6,5 +8,6 @@ class Task {
 
   void toggleDone() {
     isDone = !isDone;
+    notifyListeners();
   }
 }
